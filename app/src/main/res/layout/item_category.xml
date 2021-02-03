@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="4dp"
+    android:focusable="true"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:id="@+id/card"
+   >
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_black"
+        android:elevation="20sp"
+        >
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Nature"
+            android:gravity="center|bottom"
+            android:textColor="@color/white"
+            android:background="#6E3E0B00"
+            android:textSize="18sp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:fontFamily="@font/open_sans_bold"
+            />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
