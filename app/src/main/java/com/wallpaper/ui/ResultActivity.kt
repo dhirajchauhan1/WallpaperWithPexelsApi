@@ -21,6 +21,7 @@ import com.wallpaper.utill.Constant
 import com.wallpaper.utill.Constant.Companion.PAGE_LIMIT_FOR_RESULT
 import com.wallpaper.utill.Constant.Companion.PER_PAGE_RESULT
 import com.wallpaper.utill.Resource
+import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -44,7 +45,7 @@ class ResultActivity : AppCompatActivity() {
         })
         setUpRecyclerView()
         val repository = MainRepository(MainDatabase(this))
-        val viewModelProviderFactory = ViewModelProviderFactory(repository)
+        val viewModelProviderFactory = ViewModelProviderFactory(application, repository)
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(MainViewModel::class.java)
 
         val intent: Intent = this.intent
@@ -72,6 +73,7 @@ class ResultActivity : AppCompatActivity() {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
+                        Toasty.error(this, "An Error Occured : $message", Toasty.LENGTH_LONG).show()
                         Log.e("ResultActivity", "An Error Occured : $message")
                     }
                 }

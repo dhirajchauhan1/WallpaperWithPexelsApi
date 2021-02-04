@@ -29,6 +29,7 @@ import com.wallpaper.utill.Constant.Companion.PAGE_LIMIT_FOR_TRENDING
 import com.wallpaper.utill.Constant.Companion.PER_PAGE_RESULT
 import com.wallpaper.utill.Constant.Companion.PER_PAGE_TRENDING
 import com.wallpaper.utill.Resource
+import es.dmoral.toasty.Toasty
 
 
 class CategoryFragment : Fragment() {
@@ -68,6 +69,7 @@ class CategoryFragment : Fragment() {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
+                        Toasty.error(activity as MainActivity, "An Error Occured : $message", Toasty.LENGTH_LONG).show()
                         Log.e(TAG, "An Error Occured : $message")
                     }
                 }

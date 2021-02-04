@@ -1,6 +1,13 @@
 package com.wallpaper.ui
 
+import android.app.Application
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.ConnectivityManager.*
+import android.net.NetworkCapabilities.*
+import android.os.Build
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,11 +21,13 @@ import com.wallpaper.repository.MainRepository
 import com.wallpaper.utill.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import java.io.IOException
 
 
 class MainViewModel(
+        application:Application,
     val repository: MainRepository
-) : ViewModel() {
+) : AndroidViewModel(application) {
 
     val trendingPhoto: MutableLiveData<Resource<Trending>> = MutableLiveData()
     var trendingPhotoPage = 1
@@ -91,9 +100,25 @@ class MainViewModel(
     }
 
     fun getTrendingPhoto() = viewModelScope.launch {
+        safeTrendingPhotoCall()
+    }
+    private suspend fun safeTrendingPhotoCall(){
         trendingPhoto.postValue(Resource.Loading())
-        val response = repository.getTrendingPhotos(trendingPhotoPage)
-        trendingPhoto.postValue(handleTrendingResponse(response))
+        try {
+            if (hasInternetConnection()){
+                val response = repository.getTrendingPhotos(trendingPhotoPage)
+                trendingPhoto.postValue(handleTrendingResponse(response))
+            }
+            else{
+                trendingPhoto.postValue(Resource.Error("No Internet Connection"))
+            }
+        }
+        catch (t: Throwable){
+            when(t){
+                is IOException -> trendingPhoto.postValue(Resource.Error("Network Api Failure"))
+                else  -> trendingPhoto.postValue(Resource.Error("Conversion Error"))
+            }
+        }
     }
     private fun handleTrendingResponse(response: Response<Trending>) : Resource<Trending>{
         if (response.isSuccessful){
@@ -130,10 +155,25 @@ class MainViewModel(
     }
 
     fun getResultByQuery(query: String) = viewModelScope.launch {
+       safeGetResultByQuery(query)
+    }
+    private suspend fun safeGetResultByQuery(query: String){
         resultPhoto.postValue(Resource.Loading())
-        val response = repository.getResultByQuery(query,resultPhotoPage)
-        // Log.d("response", Gson().toJson(response)+"  " +response.message())
-        resultPhoto.postValue(handleResultByQueryResponse(response))
+        try {
+            if (hasInternetConnection()){
+                val response = repository.getResultByQuery(query,resultPhotoPage)
+                resultPhoto.postValue(handleResultByQueryResponse(response))
+            }
+            else{
+                resultPhoto.postValue(Resource.Error("No Internet Connection"))
+            }
+        }
+        catch (t: Throwable){
+            when(t){
+                is IOException -> resultPhoto.postValue(Resource.Error("Network Api Failure"))
+                else  -> resultPhoto.postValue(Resource.Error("Conversion Error"))
+            }
+        }
     }
     private fun handleResultByQueryResponse(response: Response<Trending>) : Resource<Trending>{
         if (response.isSuccessful){
@@ -164,6 +204,34 @@ class MainViewModel(
 
     fun deletePhoto(photo: Photo) = viewModelScope.launch {
         repository.deletePhoto(photo)
+    }
+
+    private fun hasInternetConnection(): Boolean{
+        val connectivityManager = getApplication<Application>().getSystemService(
+                Context.CONNECTIVITY_SERVICE
+        ) as ConnectivityManager
+
+        if (Build.VERSION.SDK_INT >=Build.VERSION_CODES.M){
+            val activeNetwork = connectivityManager.activeNetwork ?: return false
+            val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+            return when {
+                capabilities.hasTransport(TRANSPORT_WIFI) -> true
+                capabilities.hasTransport(TRANSPORT_CELLULAR) -> true
+                capabilities.hasTransport(TRANSPORT_ETHERNET) -> true
+                else -> false
+            }
+        }
+        else{
+            connectivityManager.activeNetworkInfo?.run {
+                return when(type){
+                    TYPE_WIFI -> true
+                    TYPE_MOBILE-> true
+                    TYPE_ETHERNET -> true
+                    else -> false
+                }
+            }
+        }
+        return false
     }
 
 }
