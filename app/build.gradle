@@ -14,11 +14,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.wallpaper"
+        applicationId "com.hdwallpaper4K"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -71,8 +71,8 @@ dependencies {
     // Architectural Components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
     // Navigation Components
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.3'
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
@@ -87,6 +87,11 @@ dependencies {
     // dialog Library
     implementation 'com.github.gupta1anubhav:Custom-Dialog-Box:v1.0'
 
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
     // lottie Library
     implementation 'com.airbnb.android:lottie:3.6.0'
+
+    //play core
+    implementation 'com.google.android.play:core-ktx:1.8.1'
 }

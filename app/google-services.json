@@ -1,18 +1,27 @@
 {
   "project_info": {
     "project_number": "981750192679",
+    "firebase_url": "https://wallpaper-a773e-default-rtdb.firebaseio.com",
     "project_id": "wallpaper-a773e",
     "storage_bucket": "wallpaper-a773e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:981750192679:android:c78f1482823410c3be8c02",
+        "mobilesdk_app_id": "1:981750192679:android:b2e440ccd9e5dd92be8c02",
         "android_client_info": {
-          "package_name": "com.wallpaper"
+          "package_name": "com.hdwallpaper4K"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "981750192679-i4pcb67oh2foqnmnjuiamk91v4qjt1ug.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hdwallpaper4K",
+            "certificate_hash": "3d85f5579a489f52c3c8145fb08c7bc935ce08f3"
+          }
+        },
         {
           "client_id": "981750192679-e1eg4jhav3n5uav6n95lj6m56nlvqmft.apps.googleusercontent.com",
           "client_type": 3

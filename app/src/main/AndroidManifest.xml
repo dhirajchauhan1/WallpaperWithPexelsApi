@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wallpaper">
+    package="com.hdwallpaper4K">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
     <application
-        android:name=".Application"
+        android:name="com.hdwallpaper4K.Application"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo_hd"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo_hd"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wallpaper">
-        <activity android:name=".ui.SplashActivity">
+        <activity android:name="com.hdwallpaper4K.ui.AboutActivity"></activity>
+        <activity android:name="com.hdwallpaper4K.ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.ResultActivity" />
+        <activity android:name="com.hdwallpaper4K.ui.ResultActivity" />
         <activity
-            android:name=".ui.DetailActivity"
+            android:name="com.hdwallpaper4K.ui.DetailActivity"
             android:theme="@style/DetailTheme" />
-        <activity android:name=".ui.MainActivity"/>
+        <activity android:name="com.hdwallpaper4K.ui.MainActivity" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

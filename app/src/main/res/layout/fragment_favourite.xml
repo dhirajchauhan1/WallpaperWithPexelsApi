@@ -32,6 +32,7 @@
            android:textSize="18sp"
            android:elevation="20dp"
            android:padding="16dp"
+           android:visibility="visible"
            android:fontFamily="@font/open_sans_semibold"
            android:textColor="@color/light_black"
            app:layout_constraintBottom_toBottomOf="parent"

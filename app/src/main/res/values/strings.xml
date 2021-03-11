@@ -1,5 +1,19 @@
 <resources>
-    <string name="app_name">Wallpaper</string>
+    <string name="app_name">HD Wallpaper</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="developerDesc"> Hi, my name is Dhiraj Chauhan and I am the man behind this app.
+
+if you have any suggestions or feedback feel free to message me. I will reply to everyone. :)
+
+Do drop me a Hi.. , it really means a lot to me.Looking forward to hear from you. </string>
+
+    <string name="instaTxt">
+        <a href="https://www.instagram.com/dhiraj.apk/">Message me on Instagram</a>
+    </string>
+
+    <string name="linkedinTxt">
+        <a href="https://www.linkedin.com/in/dhiraj-chauhan-717bb0179">Connect with me on Linkedin</a>
+    </string>
 </resources>

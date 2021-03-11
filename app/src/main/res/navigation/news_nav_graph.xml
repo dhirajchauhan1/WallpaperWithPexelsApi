@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.wallpaper.ui.fragments.CategoryFragment"
+        android:name="com.hdwallpaper4K.ui.fragments.CategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/fragment_category" />
     <fragment
         android:id="@+id/favouriteFragment"
-        android:name="com.wallpaper.ui.fragments.FavouriteFragment"
+        android:name="com.hdwallpaper4K.ui.fragments.FavouriteFragment"
         android:label="fragment_favourite"
         tools:layout="@layout/fragment_favourite" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.wallpaper.ui.fragments.ProfileFragment"
+        android:name="com.hdwallpaper4K.ui.fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>
